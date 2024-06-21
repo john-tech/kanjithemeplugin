@@ -87,3 +87,27 @@ function custom_shortcode_function()
 }
 
 add_shortcode('custom_shortcode', 'custom_shortcode_function');
+
+
+// Registering a shortcode to output the HTML structure
+function obstrat_obend_shortcode() {
+    ob_start(); ?>
+    
+    <button id="toggleButton">Toggle Content</button>
+
+    <div id="toggleContent" class="hidden">
+        <p>This is the content you can toggle.</p>
+    </div>
+
+    <script>
+    jQuery(document).ready(function($) {
+        $('#toggleButton').click(function() {
+            $('#toggleContent').toggle();
+        });
+    });
+    </script>
+
+    <?php
+    return ob_get_clean();
+}
+add_shortcode('obstrat_obend', 'obstrat_obend_shortcode');
